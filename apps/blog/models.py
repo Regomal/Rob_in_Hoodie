@@ -27,3 +27,15 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+
+
+class Tag(models.Model):
+    name = models.CharField(verbose_name='Теги', max_length=255)
+    articles = models.ManyToManyField(Article)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Теги'
