@@ -20,6 +20,7 @@ class Article(models.Model):
     publish_date = models.DateTimeField(verbose_name='Дата публикации')
     updated_at = models.DateTimeField(verbose_name='Дата изменения', auto_now=True)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
+    tags = models.ManyToManyField(to='Tag', verbose_name='Теги', blank=True)
 
     def __str__(self):
         return self.title
@@ -31,7 +32,7 @@ class Article(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(verbose_name='Теги', max_length=255)
-    articles = models.ManyToManyField(Article)
+
 
     def __str__(self):
         return self.name
