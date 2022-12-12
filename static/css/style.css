@@ -1,5 +1,5 @@
 #logo{
-    max-width: 400px;
+    max-width: 300px;
     width: 100%;
 }
 .main-menu{
@@ -8,9 +8,16 @@
 }
 .header-text{
     color: #2c519e;
-    font-size: 23px;
-    text-align: right;
+    font-size: 45px;
+    text-align: center;
     font-weight: bold;
-    height: 140px;
-    line-height: 140px;
+    height: 20px;
+    line-height: 75px;
+}
+.info-text{
+    color: #2c329e;
+    font-size: 19px;
+    font-weight: 400;
+    height: 20px;
+    line-height: 80px;
 }
