@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <h2>{{ article.title }}</h2>
-    <img class="img-thumbnail" src="{{ article.image.url }}" alt="">
+    {% if article.image %}
+        <img class="img-thumbnail" src="{{ article.image.url }}" alt="">
+    {% else %}
+        <img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt="">
+    {% endif %}
 
     <p>{{ article.text }}</p>
 
     <p>
         {% for tag in article.tags.all %}
-            <a href="{% url 'tag_search_view' tag_id=tag.id %}">#{{ tag.name }}</a>&nbsp;
+            <a href="{% url 'blog_tag_article' tag_id=tag.id %}">#{{ tag.name }}</a>&nbsp;
         {% endfor %}
 
     </p>
