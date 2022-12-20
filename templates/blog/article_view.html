@@ -4,8 +4,6 @@
     <h2>{{ article.title }}</h2>
     {% if article.image %}
         <img class="img-thumbnail" src="{{ article.image.url }}" alt="">
-    {% else %}
-        <img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt="">
     {% endif %}
 
     <p>{{ article.text }}</p>
