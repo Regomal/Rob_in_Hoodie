@@ -9,6 +9,16 @@
     <p>{{ article.text }}</p>
 
     <p>
+        {% if article.user %}
+            <p><strong>Автор: </strong>{{article.user.first_name}} {{article.user.last_name}}</p>
+            {% if article.user.image %}
+                <img class="img-thumbnail" src="{{ article.user.image.url }}" width="100" alt="">
+            {% endif %}
+        {% endif %}
+
+    </p>
+
+    <p>
         {% for tag in article.tags.all %}
             <a href="{% url 'blog_tag_article' tag_id=tag.id %}">#{{ tag.name }}</a>&nbsp;
         {% endfor %}
