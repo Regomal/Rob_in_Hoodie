@@ -8,6 +8,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'image_tag_thumbnail', 'price', 'quantity']
+    list_display = ['id', 'name', 'price', 'quantity']
     list_display_links = ['id', 'name']
     prepopulated_fields = {'slug': ['name']}

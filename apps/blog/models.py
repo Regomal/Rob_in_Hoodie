@@ -49,16 +49,6 @@ class Article(models.Model):
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
     tags = models.ManyToManyField(to='Tag', verbose_name='Теги', blank=True)
     user = models.ForeignKey(verbose_name='Автор', to=User, on_delete=models.CASCADE, null=True, blank=True)
-    image = ProcessedImageField(
-        verbose_name='Изображение',
-        upload_to='blog/article/',
-        null=True,
-        blank=True
-    )
-    image_thumbnail = ImageSpecField(
-        source='image',
-        processors=[ResizeToFill(600, 400)]
-    )
 
     def __str__(self):
         return self.title
