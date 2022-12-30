@@ -51,3 +51,34 @@ class Category(MPTTModel):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+class Product(models.Model):
+    name = models.CharField(verbose_name="Товар", max_length=255)
+    slug = models.SlugField(unique=True, verbose_name="Слаг")
+    descriptions = models.TextField(verbose_name="Описание", null=True, blank=True)
+    quantity = models.IntegerField(verbose_name='Количество')
+    price = models.DecimalField(verbose_name='Цена', max_digits=12, decimal_places=2, default=0)
+    updated_at = models.DateTimeField(verbose_name='Дата изменения', auto_now=True)
+    created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
+    image = ProcessedImageField(
+        verbose_name='Изображение',
+        upload_to='catalog/product/',
+        null=True,
+        blank=True
+    )
+
+    def image_tag_thumbnail(self):
+        if self.image:
+            return mark_safe(f"<img src='/{MEDIA_ROOT}{self.image}' width='70'/>")
+
+    image_tag_thumbnail.short_description = 'Изображение'
+
+
+    def image_tag(self):
+        if self.image:
+            return mark_safe(f"<img src='/{MEDIA_ROOT}{self.image}'/>")
+
+    image_tag.short_description = 'Изображение'
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
