@@ -6,7 +6,7 @@
  {% endblock %}
 
 {% block content %}
-    <h1>Категории</h1>
+    <h1 class="category-head">Категории</h1>
     <div class="row">
         {% for category in object_list %}
             <div class="col-4 blog-item">
@@ -17,7 +17,7 @@
                         <img class="img-thumbnail" src="{% static 'img/no-image.png' %}" alt="">
                     {% endif %}
                 </a>
-                <h4><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h4>
+                <h4 class="category-name"><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></h4>
             </div>
         {% endfor %}
     </div>
