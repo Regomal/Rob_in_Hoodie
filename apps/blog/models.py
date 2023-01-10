@@ -2,11 +2,13 @@ from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFill
 from django.utils.safestring import mark_safe
+
+from apps.main.mixins import MetaTagMixin
 from config.settings import MEDIA_ROOT
 from apps.user.models import User
 
 
-class BlogCategory(models.Model):
+class BlogCategory(MetaTagMixin):
     name = models.CharField(verbose_name='Имя категории', max_length=255)
     # image = models.ImageField(verbose_name='Изображение', upload_to='blog/category/', null=True)
     image = ProcessedImageField(
@@ -39,7 +41,7 @@ class BlogCategory(models.Model):
 
 
 
-class Article(models.Model):
+class Article(MetaTagMixin):
     category = models.ForeignKey(verbose_name='Категория', to=BlogCategory, on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Заголовок', max_length=255)
     text_preview = models.TextField(verbose_name='Текст-превью', null=True, blank=True)
@@ -69,7 +71,7 @@ class Article(models.Model):
         verbose_name_plural = 'Статьи'
 
 
-class Tag(models.Model):
+class Tag(MetaTagMixin):
     name = models.CharField(verbose_name='Теги', max_length=255)
 
 
