@@ -121,6 +121,12 @@ class Product(MetaTagMixin):
     def get_absolute_url(self):
         return reverse('product', args=[self.slug])
 
+    def main_category(self):
+        category = self.categories.filter(productcategory__is_main=True).first()
+        if category:
+            return category
+        return Category.objects.get(id=1)
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'

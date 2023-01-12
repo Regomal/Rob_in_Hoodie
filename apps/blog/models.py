@@ -2,6 +2,8 @@ from django.db import models
 from imagekit.models import ProcessedImageField, ImageSpecField
 from pilkit.processors import ResizeToFill
 from django.utils.safestring import mark_safe
+
+from apps.main.mixins import MetaTagMixin
 from config.settings import MEDIA_ROOT
 from apps.user.models import User
 
