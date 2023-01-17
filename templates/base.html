@@ -31,9 +31,13 @@
         </div>
         <div class="col-5">
             <p>
-                <a href="/user/login/" class="floating-button">Регистрация</a>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'logout' %}" class="floating-button">Выйти</a>
+                {% else %}
+                    <a href="/user/register/" class="floating-button">Регистрация</a>
+                {% endif %}
                 <a href="" class="floating-button">О нас</a>
-                <a href="" class="floating-button">Премиум</a>
+                <a href="" class="floating-button">Корзина</a>
             </p>
         </div>
     </div>
