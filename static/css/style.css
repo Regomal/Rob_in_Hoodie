@@ -90,12 +90,13 @@
 }
 .product .product-name{
     text-align: center;
-    color: #000;
+    color: #ff703f;
     font-size: 18px;
     padding: 0 15px 15px;
 }
 .product-price{
     text-align: center;
+    color: #ff3b00;
     display: block;
     padding: 15px;
     font-size: 30px;
@@ -104,7 +105,7 @@
     transform: scale(1.03, 1.03);
 }
 .product:hover .product-name{
-    color: darkred;
+    color: #ff9100;
 }
 .product-image{
     display: block;
@@ -171,5 +172,11 @@ a{
 }
 a:hover {
     color: #ff8000;
-    font-weight: 700;
+    text-decoration: none;
+}
+th{
+    color: #ff9100;
+}
+td{
+    color: #f59254;
 }
