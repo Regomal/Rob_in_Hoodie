@@ -155,3 +155,21 @@ body{
     font-stretch: ultra-expanded;
     font-style: italic;
 }
+::marker{
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0 !important;
+    text-align: start !important;
+    text-align-last: start !important;
+    color: #fc872b;
+    font-size: 1.2em;
+}
+a{
+    color: #ffa180;
+    text-decoration: none;
+}
+a:hover {
+    color: #ff8000;
+    font-weight: 700;
+}
