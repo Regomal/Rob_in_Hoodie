@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from apps.order.forms import AddToCartForm
 from apps.order.models import Cart
 
+
 def get_cart_data(user):
     total = 0
     cart = Cart.objects.filter(user=user)
@@ -33,3 +34,8 @@ def set_to_cart(request):
             {"product": cd["product"], "cart": get_cart_data(cd["user"])}
         )
 
+
+def cart_view(request):
+    cart = get_cart_data(request.user)
+    breadcrumbs = {'current': 'Корзина'}
+    return render(request, 'order/cart_view.html', {"cart": cart, "breadcrumbs": breadcrumbs})
