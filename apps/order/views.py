@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from apps.order.forms import AddToCartForm, CreateOrderForm
 from apps.order.models import Cart
@@ -16,6 +17,7 @@ def get_cart_data(user):
 
 @login_required
 def set_to_cart(request):
+    breadcrumbs = {'current': 'Добавление товара'}
     data = request.GET.copy()
     data.update(user=request.user)
 
@@ -31,7 +33,7 @@ def set_to_cart(request):
         return render(
             request,
             'order/added.html',
-            {"product": cd["product"], "cart": get_cart_data(cd["user"])}
+            {"product": cd["product"], "cart": get_cart_data(cd["user"]), 'breadcrumbs': breadcrumbs}
         )
 
 
@@ -43,6 +45,7 @@ def cart_view(request):
 
 @login_required
 def create_order_view(request):
+    breadcrumbs = {reverse('cart'): 'Корзина', 'current': 'Оформление заказа'}
     error = None
     user = request.user
     cart = get_cart_data(user)
@@ -58,8 +61,9 @@ def create_order_view(request):
         form = CreateOrderForm(request.POST)
         if form.is_valid():
             form.save()
+            breadcrumbs = {reverse('cart'): 'Корзина', 'current': 'Успешное оформление заказа'}
             Cart.objects.filter(user=user).delete()
-            return render(request, 'order/created.html')
+            return render(request, 'order/created.html', {'breadcrumbs': breadcrumbs})
         error = form.errors
     else:
         form = CreateOrderForm(data={
@@ -68,7 +72,7 @@ def create_order_view(request):
             'phone': user.phone if user.phone else '',
             'email': user.email
         })
-    return render(request, 'order/create.html', {'cart': cart, 'error': error, 'form': form})
+    return render(request, 'order/create.html', {'cart': cart, 'error': error, 'form': form, 'breadcrumbs': breadcrumbs})
 
 
 
