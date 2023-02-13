@@ -47,3 +47,27 @@ class ProductReadSerializer(serializers.ModelSerializer):
             'price',
             'categories'
         )
+
+
+class CategoryWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = (
+            'id',
+            'name',
+            'slug',
+            'descriptions',
+            'parent'
+        )
+
+
+class CategoryReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = (
+            'id',
+            'name',
+            "slug",
+            'descriptions',
+            'parent'
+        )
