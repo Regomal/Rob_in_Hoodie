@@ -1,7 +1,6 @@
 from rest_framework import generics, permissions, viewsets
 from apps.catalog.models import Category, Product, ProductImage
-from apps.api.catalog.serializers import CategorySerializer, ProductReadSerializer, ProductWriteSerializer, \
-    CategoryReadSerializer, CategoryWriteSerializer
+from apps.api.catalog.serializers import CategorySerializer, ProductReadSerializer, ProductWriteSerializer
 
 
 class ProductListView(generics.ListAPIView):
@@ -32,29 +31,12 @@ class ProductDeleteView(generics.DestroyAPIView):
     permission_classes = [permissions.IsAdminUser]
 
 
-class CategoryListView(generics.ListAPIView):
-    serializer_class = CategoryReadSerializer
+class CategoryViewSet(viewsets.ModelViewSet):
+    serializer_class = CategorySerializer
     queryset = Category.objects.all()
 
-
-class CategoryDetailView(generics.RetrieveAPIView):
-    serializer_class = CategoryReadSerializer
-    queryset = Category.objects.all()
-
-
-class CategoryCreateView(generics.CreateAPIView):
-    serializer_class = CategoryWriteSerializer
-    queryset = Category.objects.all()
-    permission_classes = [permissions.IsAdminUser]
-
-
-class CategoryUpdateView(generics.UpdateAPIView):
-    serializer_class = CategoryWriteSerializer
-    queryset = Category.objects.all()
-    permission_classes = [permissions.IsAdminUser]
-
-
-class CategoryDeleteView(generics.DestroyAPIView):
-    serializer_class = CategoryWriteSerializer
-    queryset = Category.objects.all()
-    permission_classes = [permissions.IsAdminUser]
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'delete']:
+            return [permission() for permission in [permissions.IsAdminUser]]
+        else:
+            return [permission() for permission in [permissions.AllowAny]]

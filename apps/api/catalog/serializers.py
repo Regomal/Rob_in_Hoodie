@@ -13,10 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
             'slug',
             'descriptions',
             'parent',
-            # 'image',
-            'meta_title',
-            'meta_description',
-            'meta_keywords',
+            'image',
         )
 
 
@@ -48,26 +45,3 @@ class ProductReadSerializer(serializers.ModelSerializer):
             'categories'
         )
 
-
-class CategoryWriteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = (
-            'id',
-            'name',
-            'slug',
-            'descriptions',
-            'parent'
-        )
-
-
-class CategoryReadSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = (
-            'id',
-            'name',
-            "slug",
-            'descriptions',
-            'parent'
-        )
