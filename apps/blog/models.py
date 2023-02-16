@@ -40,13 +40,12 @@ class BlogCategory(MetaTagMixin):
     image_tag.short_description = 'Изображение'
 
 
-
 class Article(MetaTagMixin):
     category = models.ForeignKey(verbose_name='Категория', to=BlogCategory, on_delete=models.CASCADE)
     title = models.CharField(verbose_name='Заголовок', max_length=255)
     text_preview = models.TextField(verbose_name='Текст-превью', null=True, blank=True)
     text = models.TextField(verbose_name='Текст')
-    publish_date = models.DateTimeField(verbose_name='Дата публикации')
+    publish_date = models.DateTimeField(verbose_name='Дата публикации', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Дата изменения', auto_now=True)
     created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
     tags = models.ManyToManyField(to='Tag', verbose_name='Теги', blank=True)
