@@ -14,6 +14,7 @@ class CategoryIndexView(generic.ListView):
         context['breadcrumbs'] = self.breadcrumbs
         return context
 
+
 class ProductsByCategoryView(generic.ListView):
 
     template_name = 'catalog/category.html'
@@ -46,6 +47,7 @@ class ProductsByCategoryView(generic.ListView):
         context['categories'] = self.categories
         context['breadcrumbs'] = self.set_breadcrumbs()
         return context
+
 
 class ProductDetailView(generic.DetailView):
     model = Product
