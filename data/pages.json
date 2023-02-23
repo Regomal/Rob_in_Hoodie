@@ -4,7 +4,11 @@
     "pk": 1,
     "fields": {
       "name": "О нас",
-      "slug": "about"
+      "slug": "about",
+      "text": "<p>&nbsp;</p>\n<p>Тут могла бы быть инфа про сайт и магазин, но у админа нет кириллицы на клавиатуре и ему не очень удобно набирать большие тексты.</p>",
+      "meta_title": "О нас",
+      "meta_description": "О создателе",
+      "meta_keywords": "-"
     }
   },
   {
@@ -12,7 +16,23 @@
     "pk": 2,
     "fields": {
       "name": "Оплата и доставка",
-      "slug": "payment-and-shipping"
+      "slug": "payment-and-shipping",
+      "text": "<p>&nbsp;</p>\n<p>Тут могла бы быть инфа про доставку, но у админа нет кириллицы на клавиатуре и ему не очень удобно набирать большие тексты.</p>",
+      "meta_title": "Оплата и доставка",
+      "meta_description": "Оплата и доставка из магазина Filmoroom",
+      "meta_keywords": "-"
+    }
+  },
+  {
+    "model": "main.page",
+    "pk": 3,
+    "fields": {
+      "name": "Наши контакты",
+      "slug": "our_contacts",
+      "text": "<br><h4>Телефон: +380123456789</h4>\n<h4>E-mail: nepishitesuda.gmail.com</h4>\n<h4>Instagram: @filmoroom</h4>\n<p>&nbsp;</p>\n<p>Если у вас возникли проблемы с магазином, просим вас связаться с нами с помощью вышеперечисленных контактов.</p>\n<h4>С уважением, администрация сайта</h4>\n<p>&nbsp;</p>",
+      "meta_title": "Контакты",
+      "meta_description": "Контакты администрации магазина Filmoroom",
+      "meta_keywords": "-"
     }
   }
 ]

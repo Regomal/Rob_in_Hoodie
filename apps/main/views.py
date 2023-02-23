@@ -13,3 +13,7 @@ class PageView(generic.DetailView):
     template_name = 'main/page.html'
     queryset = Page.objects.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'breadcrumbs': {'current': self.object}})
+        return context
