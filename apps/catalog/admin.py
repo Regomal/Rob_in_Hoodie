@@ -8,7 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class ProductCategoryInline(admin.TabularInline):
-    model =  Product.categories.through
+    model = Product.categories.through
     extra = 1
 
 
