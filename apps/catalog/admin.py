@@ -18,6 +18,7 @@ class ProductImageInline(admin.TabularInline):
     fields = ['product', 'image_tag', 'image', 'is_main']
     extra = 1
 
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['name']}
