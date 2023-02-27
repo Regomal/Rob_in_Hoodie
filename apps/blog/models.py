@@ -80,3 +80,26 @@ class Tag(MetaTagMixin):
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
+
+
+class CommentArticle(models.Model):
+    username = models.CharField(verbose_name="Пользователь", max_length=255)
+    email = models.EmailField(verbose_name="E-mail", max_length=255)
+    text = models.TextField(verbose_name="Текст комментария")
+    created_at = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
+    is_checked = models.BooleanField(verbose_name="Проверен?", default=False)
+    article = models.ForeignKey(Article, verbose_name="Статья", on_delete=models.CASCADE)
+
+    def user_image(self):
+        if User.objects.get(email=self.email):
+            image = User.objects.get(email=self.email).image_thumbnail
+            return image
+
+    class Meta:
+        verbose_name = "Комментарий"
+        verbose_name_plural = "Комментарии"
+
+
+    def __str__(self):
+        return self.username    #######
+
