@@ -1,0 +1,109 @@
+{% load static %}
+<section>
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+    <div class="container my-5 py-5 text-dark">
+        <div class="row d-flex">
+            <div class="col-md-10 col-lg-8 col-xl-6">
+                <div class="card" style="width: 200%; background:none">
+                    <div class="card-body p-4">
+                        <div class="d-flex flex-start w-100">
+                            {% if request.user.image %}
+                                <span class="rounded-circle shadow-1-strong me-3">
+                                    <img width="65" height="65" src="{{ request.user.image.url }}" alt="">
+                                </span>
+                            {% else %}
+                                <span class="avatar">
+                                    <img src="{% static 'img/no-image.png' %}" alt="">
+                                </span>
+                            {% endif %}
+                            <div class="w-100">
+                                <h5 style="color: #f68154">Написать гадость</h5>
+                                <form method="post" class="form-outline">
+                                    {% csrf_token %}
+                                    {% if not request.user.is_authenticated %}
+                                        <div>
+                                            <label class="form-label" style="color: #fa612a"
+                                                   for="username">Имя</label>
+                                            <input class="form-control" id="username" name="username" required>
+                                        </div>
+                                        <div>
+                                            <label class="form-label" style="color: #fa612a"
+                                                   for="email">E-mail</label>
+                                            <input class="form-control" id="email" name="email" required>
+                                        </div>
+                                    {% endif %}
+                                    <div>
+                                        <label class="form-label" style="color: #fa612a" for="text">Пиши все что думаешь о данном творении и его авторе</label>
+                                        <textarea class="form-control" id="text" name="text" rows="2"
+                                                  required></textarea>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-between mt-3">
+                                        <button type="submit" style="margin-left: 88.5%"
+                                                class="btn btn-outline-danger">Опубликовать
+                                        </button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5 py-5 text-dark">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 style="color: #f68154">Комментарии</h4>
+                </div>
+
+                {% for comment in comments %}
+                    {% if comment.is_checked == True %}
+                        <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex flex-start">
+                                {% if comment.user_image %}
+                                    <img class="avatar" src="{{ comment.user_image.url }}"
+                                         width="40" height="40" alt="oh fuck, not again">
+                                {% else %}
+                                    <span class="avatar">
+                                            <img src="{% static 'img/no-image.png' %}" alt="">
+                                        </span>
+                                {% endif %}
+
+                                <div class="w-100">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="text-primary fw-bold mb-0" style="margin-left: 20px">
+                                            {{ comment.username }}
+                                            <span class="text-dark ms-2">{{ comment.text }}</span>
+                                        </h6>
+                                        <p class="mb-0">{{ comment.created_at }}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p class="small mb-0" style="color: #aaa;">
+                                            <a href="" class="link-grey">Ответить</a>
+                                        </p>
+                                        <div class="d-flex flex-row">
+                                            <i class="fas fa-star text-warning me-2"></i>
+                                            <i class="far fa-check-circle" style="color: #aaa;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
